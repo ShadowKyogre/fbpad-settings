@@ -8,8 +8,8 @@ arch=('i686' 'x86_64')
 url="http://repo.or.cz/w/fbpad.git"
 license=('custom:BSD')
 groups=()
-depends=('bash' 'vim' 'mutt')
-makedepends=('git' 'ft2tf' 'ttf-dejavu')
+depends=('fish' 'vim')
+makedepends=('git' 'ft2tf' 'ttf-fantasque-sans')
 optdepends=()
 provides=('fbpad')
 conflicts=('fbpad')
@@ -23,15 +23,15 @@ source=("$pkgname::git://repo.or.cz/fbpad.git"
         'LICENSE')
 noextract=()
 md5sums=('SKIP'
-         'd81cdedda7b34c160212273e1554e2ac'
+         'SKIP'
          '185b9d6ec1c539213226a3e2509c7ccd'
          'ec67f29a7dec10f86ef31515ed657a91')
 sha1sums=('SKIP'
-          '5db81b84caf6a4509f088619bfa700a6b438f600'
+          'SKIP'
           'dbb816fe37faf0acb4e1a916d7493787c2b647fc'
           '76a535243054e1fdd9caaa46a1571cd381d74353')
 sha256sums=('SKIP'
-            '8ca0f3f42e4ae83ad3ca7766c948bfa303f9501662558c76b6db684b61a9d13e'
+            'SKIP'
             'fb8ae049aa7d41fb285cbf7aa4487b28014273ebcfceefb4d58fb07018312e9c'
             '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72')
 
@@ -60,9 +60,10 @@ package() {
   mkdir -p $pkgdir/usr/share/terminfo
   tic -x -o $pkgdir/usr/share/terminfo $srcdir/fbpad-256.info
   ## Setup fonts
-  ft2tf /usr/share/fonts/TTF/DejaVuSansMono.ttf:6 >$srcdir/font.ttf
-  ft2tf /usr/share/fonts/TTF/DejaVuSansMono-Oblique.ttf:6 >$srcdir/fonti.ttf
-  ft2tf /usr/share/fonts/TTF/DejaVuSansMono-Bold.ttf:6 >$srcdir/fontb.ttf
+
+  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Regular.ttf:6 >$srcdir/font.ttf
+  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Italic.ttf:6 >$srcdir/fonti.ttf
+  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Bold.ttf:6 >$srcdir/fontb.ttf
   ## Install fonts
   install -Dm644 $srcdir/font.ttf  $pkgdir/usr/share/$pkgname/font.ttf
   install -Dm644 $srcdir/fonti.ttf $pkgdir/usr/share/$pkgname/fonti.ttf
