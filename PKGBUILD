@@ -9,7 +9,7 @@ url="http://repo.or.cz/w/fbpad.git"
 license=('custom:BSD')
 groups=()
 depends=('fish' 'vim')
-makedepends=('git' 'ft2tf' 'ttf-fantasque-sans')
+makedepends=('git' 'ft2tf' 'ttf-fantasque-sans' 'ttf-droid')
 optdepends=()
 provides=('fbpad')
 conflicts=('fbpad')
@@ -61,9 +61,9 @@ package() {
   tic -x -o $pkgdir/usr/share/terminfo $srcdir/fbpad-256.info
   ## Setup fonts
 
-  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Regular.ttf:6 >$srcdir/font.ttf
-  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Italic.ttf:6 >$srcdir/fonti.ttf
-  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Bold.ttf:6 >$srcdir/fontb.ttf
+  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Regular.ttf:4.5 /usr/share/fonts/TTF/DroidSansFallbackFull.ttf:4.5 > "$srcdir/font.ttf"
+  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Italic.ttf:4.5 /usr/share/fonts/TTF/DroidSansFallbackFull.ttf:4.5 > "$srcdir/fonti.ttf"
+  ft2tf /usr/share/fonts/TTF/FantasqueSansMono-Bold.ttf:4.5 /usr/share/fonts/TTF/DroidSansFallbackFull.ttf:4.5 > "$srcdir/fontb.ttf"
   ## Install fonts
   install -Dm644 $srcdir/font.ttf  $pkgdir/usr/share/$pkgname/font.ttf
   install -Dm644 $srcdir/fonti.ttf $pkgdir/usr/share/$pkgname/fonti.ttf
