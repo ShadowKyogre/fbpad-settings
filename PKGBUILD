@@ -23,23 +23,27 @@ source=(
     'fbpad-256.info'
     'LICENSE'
     'correct_term.patch'
+    'dont_desat.patch'
 )
 noextract=()
 md5sums=('SKIP'
-         'SKIP'
+         'fb4c419e7a2d5c2d360864626d96c090'
          '185b9d6ec1c539213226a3e2509c7ccd'
          'ec67f29a7dec10f86ef31515ed657a91'
-         '308c2e57d08b6c686596f80627e23282')
+         '308c2e57d08b6c686596f80627e23282'
+         '54ba0719a3f2714741748995d4372404')
 sha1sums=('SKIP'
-          'SKIP'
+          'e3b82187d698e8542bbd556b311a49f3104bf203'
           'dbb816fe37faf0acb4e1a916d7493787c2b647fc'
           '76a535243054e1fdd9caaa46a1571cd381d74353'
-          '7a7f20dca0e7deaa9afba2bb44e235c1eeb4fcb5')
+          '7a7f20dca0e7deaa9afba2bb44e235c1eeb4fcb5'
+          '7641cd6a9014c3a59feb7367bb6268046c65609b')
 sha256sums=('SKIP'
-            'SKIP'
+            '3dff82c183d3d4734da0e63cd9df754d0007abf19381167ec2d00df0d7a072ed'
             'fb8ae049aa7d41fb285cbf7aa4487b28014273ebcfceefb4d58fb07018312e9c'
             '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
-            'b6d2df2198fc0312f29fc142c4f508c6244e0624b039c6ac006dc13f87b6a073')
+            'b6d2df2198fc0312f29fc142c4f508c6244e0624b039c6ac006dc13f87b6a073'
+            'c9859be2bae57086e05e63124ab179649870c9de9af8c2e98fe20f99ec334bad')
 
 pkgver() {
   cd $srcdir/$pkgname
@@ -51,6 +55,7 @@ prepare() {
   ## Custom config.h
   cp $srcdir/config.h config.h
   patch -Np1 -i "${srcdir}/correct_term.patch"
+  patch -Np1 -i "${srcdir}/dont_desat.patch"
 }
 
 build() {
