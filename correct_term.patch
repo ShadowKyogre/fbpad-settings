@@ -1,0 +1,13 @@
+diff --git a/term.c b/term.c
+index 058c4e6..b6eda3d 100644
+--- a/term.c
++++ b/term.c
+@@ -317,7 +317,7 @@ void term_exec(char **args)
+ 	if ((term->pid = fork()) == -1)
+ 		return;
+ 	if (!term->pid) {
+-		char *envp[MAXENV] = {"TERM=linux"};
++		char *envp[MAXENV] = {"TERM=fbpad-256"};
+ 		envcpy(envp + 1, environ);
+ 		_login(slave);
+ 		close(master);
