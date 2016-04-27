@@ -8,7 +8,7 @@ arch=('i686' 'x86_64')
 url="http://repo.or.cz/w/fbpad.git"
 license=('custom:BSD')
 groups=()
-depends=('fish' 'vim')
+depends=('tmux' 'vim')
 makedepends=('git' 'ft2tf' 'ttf-fantasque-sans' 'ttf-droid' 'ttf-symbola')
 optdepends=()
 provides=('fbpad')
@@ -22,27 +22,24 @@ source=(
     'config.h'
     'fbpad-256.info'
     'LICENSE'
-    'correct_term.patch'
+    'correct_term_and_simplify.patch'
 )
 noextract=()
 md5sums=('SKIP'
-         'fb4c419e7a2d5c2d360864626d96c090'
+         'SKIP'
          '185b9d6ec1c539213226a3e2509c7ccd'
          'ec67f29a7dec10f86ef31515ed657a91'
-         '308c2e57d08b6c686596f80627e23282'
-)
+         '294755ab93d5ace4bc8c1a220935e202')
 sha1sums=('SKIP'
-          'e3b82187d698e8542bbd556b311a49f3104bf203'
+          'SKIP'
           'dbb816fe37faf0acb4e1a916d7493787c2b647fc'
           '76a535243054e1fdd9caaa46a1571cd381d74353'
-          '7a7f20dca0e7deaa9afba2bb44e235c1eeb4fcb5'
-)
+          '616012dadb1c7c984d7230a78e358fb9a991a3c3')
 sha256sums=('SKIP'
-            '3dff82c183d3d4734da0e63cd9df754d0007abf19381167ec2d00df0d7a072ed'
+            'SKIP'
             'fb8ae049aa7d41fb285cbf7aa4487b28014273ebcfceefb4d58fb07018312e9c'
             '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
-            'b6d2df2198fc0312f29fc142c4f508c6244e0624b039c6ac006dc13f87b6a073'
-)
+            '369d14a61c1b616138d03e54447b659fe03ee33abd8e593c581b50eb285c75b5')
 
 pkgver() {
   cd $srcdir/$pkgname
@@ -53,7 +50,7 @@ prepare() {
   cd $srcdir/$pkgname
   ## Custom config.h
   cp $srcdir/config.h config.h
-  patch -Np1 -i "${srcdir}/correct_term.patch"
+  patch -Np1 -i "${srcdir}/correct_term_and_simplify.patch"
 }
 
 build() {

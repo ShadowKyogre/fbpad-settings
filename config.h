@@ -6,7 +6,7 @@
 #define TAGS_SAVED	""
 
 /* programs mapped to m-c, m-m, m-e */
-#define SHELL		{"fish"}
+#define SHELL		{"tmux"}
 #define EDITOR		{"vim"}
 #define MAIL		{"mutt"}
 

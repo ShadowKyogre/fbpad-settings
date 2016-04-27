@@ -1,0 +1,51 @@
+diff --git a/term.c b/term.c
+index 058c4e6..e9c0967 100644
+--- a/term.c
++++ b/term.c
+@@ -281,32 +281,6 @@ static void _login(int fd)
+ 		close(fd);
+ }
+ 
+-#define MAXENV		(1 << 8)
+-
+-static void envcpy(char **d, char **s)
+-{
+-	while (*s)
+-		*d++ = *s++;
+-	*d = NULL;
+-}
+-
+-static void execvep(char *cmd, char **argv, char **envp)
+-{
+-	char path[512];
+-	char *p = getenv("PATH");
+-	execve(cmd, argv, envp);
+-	while (*p) {
+-		char *s = path;
+-		while (*p && *p != ':')
+-			*s++ = *p++;
+-		*s++ = '/';
+-		strcpy(s, cmd);
+-		execve(path, argv, envp);
+-		while (*p == ':')
+-			p++;
+-	}
+-}
+-
+ extern char **environ;
+ void term_exec(char **args)
+ {
+@@ -317,11 +291,10 @@ void term_exec(char **args)
+ 	if ((term->pid = fork()) == -1)
+ 		return;
+ 	if (!term->pid) {
+-		char *envp[MAXENV] = {"TERM=linux"};
+-		envcpy(envp + 1, environ);
++		putenv("TERM=fbpad-256");
+ 		_login(slave);
+ 		close(master);
+-		execvep(args[0], args, envp);
++		execvp(args[0], args);
+ 		exit(1);
+ 	}
+ 	close(slave);
