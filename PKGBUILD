@@ -19,7 +19,7 @@ options=()
 install=$pkgname.install
 source=(
     "$pkgname::git://repo.or.cz/fbpad.git"
-    'config.h'
+    'conf.h'
     'fbpad-256.info'
     'LICENSE'
     'correct_term_and_simplify.patch'
@@ -48,8 +48,8 @@ pkgver() {
 
 prepare() {
   cd $srcdir/$pkgname
-  ## Custom config.h
-  cp $srcdir/config.h config.h
+  ## Custom conf.h
+  cp "$srcdir/conf.h" conf.h
   patch -Np1 -i "${srcdir}/correct_term_and_simplify.patch"
 }
 

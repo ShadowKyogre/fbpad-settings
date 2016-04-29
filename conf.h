@@ -8,7 +8,7 @@
 /* programs mapped to m-c, m-m, m-e */
 #define SHELL		{"tmux"}
 #define EDITOR		{"vim"}
-#define MAIL		{"mutt"}
+#define MAIL		{"mailx", "-f", "+inbox"}
 
 /* fbval_t should match framebuffer depth */
 typedef unsigned int fbval_t;
@@ -19,8 +19,8 @@ typedef unsigned int fbval_t;
 #define FB		"/usr/share/fbpad-git/fontb.ttf"
 
 /* foreground and background colors */
-#define FGCOLOR		15
-#define BGCOLOR		0
+#define FGCOLOR		COLORF
+#define BGCOLOR		COLOR0
 
 /* where to write the screen shot */
 #define SCRSHOT		"/tmp/scr"
@@ -41,9 +41,9 @@ typedef unsigned int fbval_t;
 #define COLOR7 0xacc0cd
 #define COLOR8 0x30233a
 #define COLOR9 0xff62a6
-#define COLOR10 0xa6ff62
-#define COLOR11 0xffbb62
-#define COLOR12 0x62a6ff
-#define COLOR13 0xbb62ff
-#define COLOR14 0x62ffbb
-#define COLOR15 0xdcd6c2
+#define COLORA 0xa6ff62
+#define COLORB 0xffbb62
+#define COLORC 0x62a6ff
+#define COLORD 0xbb62ff
+#define COLORE 0x62ffbb
+#define COLORF 0xdcd6c2
