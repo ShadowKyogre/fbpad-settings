@@ -2,7 +2,7 @@
 # Maintainer: aksr <aksr at t-com dot me>
 pkgname=fbpad-git
 pkgver=0.r267.421ceaa
-pkgrel=3
+pkgrel=4
 pkgdesc="A small linux framebuffer virtual terminal."
 arch=('i686' 'x86_64')
 url="http://repo.or.cz/w/fbpad.git"
@@ -26,24 +26,6 @@ source=(
     '0001-Restore-color-shifting-when-bold-isn-t-available.patch'
 )
 noextract=()
-md5sums=('SKIP'
-         'c52326a545eb85ef8b1c0a75142ec57e'
-         '185b9d6ec1c539213226a3e2509c7ccd'
-         'ec67f29a7dec10f86ef31515ed657a91'
-         '294755ab93d5ace4bc8c1a220935e202'
-         'a24d84e502ea7fc255443467f644bd85')
-sha1sums=('SKIP'
-          '952c84274a40904c647ebd4be262f13e9b991f3e'
-          'dbb816fe37faf0acb4e1a916d7493787c2b647fc'
-          '76a535243054e1fdd9caaa46a1571cd381d74353'
-          '616012dadb1c7c984d7230a78e358fb9a991a3c3'
-          '5c744035954661db3b0264872374f8373ba5709d')
-sha256sums=('SKIP'
-            '74f684fe34c8cb5c9237cc719897577ebafe42619b98d68404edb2ba07b9011b'
-            'fb8ae049aa7d41fb285cbf7aa4487b28014273ebcfceefb4d58fb07018312e9c'
-            '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
-            '369d14a61c1b616138d03e54447b659fe03ee33abd8e593c581b50eb285c75b5'
-            '62b9045bc95d14c34c160a861787d289822fd2564d30badeb03c7011cc1276c7')
 
 pkgver() {
   cd $srcdir/$pkgname
@@ -99,3 +81,9 @@ package() {
   install -Dm644 $srcdir/fonti.ttf $pkgdir/usr/share/$pkgname/fonti.ttf
   install -Dm644 $srcdir/fontb.ttf $pkgdir/usr/share/$pkgname/fontb.ttf
 }
+sha256sums=('SKIP'
+            '74f684fe34c8cb5c9237cc719897577ebafe42619b98d68404edb2ba07b9011b'
+            '424cfd0acad2c27ef49d60a6fcc9d32a7fc121caa44e94a6b2c20c8268c69695'
+            '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
+            '369d14a61c1b616138d03e54447b659fe03ee33abd8e593c581b50eb285c75b5'
+            '62b9045bc95d14c34c160a861787d289822fd2564d30badeb03c7011cc1276c7')
