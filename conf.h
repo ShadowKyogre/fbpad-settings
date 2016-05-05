@@ -47,3 +47,5 @@ typedef unsigned int fbval_t;
 #define COLORD 0xbb62ff
 #define COLORE 0x62ffbb
 #define COLORF 0xdcd6c2
+
+#define BOLD_SHIFTS_COLOR
