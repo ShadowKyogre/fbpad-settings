@@ -1,0 +1,84 @@
+From 5916b47f9389b19269852adac7ddee3c60bff392 Mon Sep 17 00:00:00 2001
+From: ShadowKyogre <shadowkyogre.public@gmail.com>
+Date: Thu, 5 May 2016 11:01:46 -0700
+Subject: [PATCH] Support both bold and italics at same time
+
+---
+ conf.h  |  1 +
+ fbpad.h |  2 +-
+ pad.c   | 10 +++++++---
+ 3 files changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/conf.h b/conf.h
+index f875626..27f9485 100644
+--- a/conf.h
++++ b/conf.h
+@@ -17,6 +17,7 @@ typedef unsigned int fbval_t;
+ #define FR		"/path/to/font.tf"
+ #define FI		NULL
+ #define FB		NULL
++#define FBI		NULL
+ 
+ /* foreground and background colors */
+ #define FGCOLOR		COLOR0
+diff --git a/fbpad.h b/fbpad.h
+index 9111c7a..8955728 100644
+--- a/fbpad.h
++++ b/fbpad.h
+@@ -59,7 +59,7 @@ int  clrmap(int c);
+ 
+ int pad_init(void);
+ void pad_free(void);
+-int pad_font(char *fr, char *fi, char *fb);
++int pad_font(char *fr, char *fi, char *fb, char *fbi);
+ void pad_put(int ch, int r, int c, int fg, int bg);
+ int pad_rows(void);
+ int pad_cols(void);
+diff --git a/pad.c b/pad.c
+index a9b813c..1f037eb 100644
+--- a/pad.c
++++ b/pad.c
+@@ -8,11 +8,11 @@
+ 
+ static int rows, cols;
+ static int fnrows, fncols;
+-static struct font *fonts[3];
++static struct font *fonts[4];
+ 
+ int pad_init(void)
+ {
+-	if (pad_font(FR, FI, FB))
++	if (pad_font(FR, FI, FB, FBI))
+ 		return 1;
+ 	rows = fb_rows() / fnrows;
+ 	cols = fb_cols() / fncols;
+@@ -126,6 +126,9 @@ static void fb_box(int sr, int er, int sc, int ec, fbval_t val)
+ 
+ static int fnsel(int fg, int bg)
+ {
++	/* only use bold and italic combo font when there's one available */
++	if (((fg | bg) & FN_B) && ((fg | bg) & FN_I) && fonts[3])
++		return 3;
+ 	if ((fg | bg) & FN_B)
+ 		return fonts[2] ? 2 : 0;
+ 	if ((fg | bg) & FN_I)
+@@ -172,7 +175,7 @@ int pad_cols(void)
+ 	return cols;
+ }
+ 
+-int pad_font(char *fr, char *fi, char *fb)
++int pad_font(char *fr, char *fi, char *fb, char *fbi)
+ {
+ 	struct font *r = fr ? font_open(fr) : NULL;
+ 	if (!r)
+@@ -180,6 +183,7 @@ int pad_font(char *fr, char *fi, char *fb)
+ 	fonts[0] = r;
+ 	fonts[1] = fi ? font_open(fi) : NULL;
+ 	fonts[2] = fb ? font_open(fb) : NULL;
++	fonts[3] = fbi ? font_open(fbi) : NULL;
+ 	memset(gc_info, 0, sizeof(gc_info));
+ 	fnrows = font_rows(fonts[0]);
+ 	fncols = font_cols(fonts[0]);
+-- 
+2.8.0
+

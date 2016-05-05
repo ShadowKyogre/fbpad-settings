@@ -17,6 +17,7 @@ typedef unsigned int fbval_t;
 #define FR		"/usr/share/fbpad-git/font.ttf"
 #define FI		"/usr/share/fbpad-git/fonti.ttf"
 #define FB		"/usr/share/fbpad-git/fontb.ttf"
+#define FBI		"/usr/share/fbpad-git/fontbi.ttf"
 
 /* foreground and background colors */
 #define FGCOLOR		0xdcd6c2

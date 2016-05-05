@@ -2,7 +2,7 @@
 # Maintainer: aksr <aksr at t-com dot me>
 pkgname=fbpad-git
 pkgver=0.r267.421ceaa
-pkgrel=4
+pkgrel=5
 pkgdesc="A small linux framebuffer virtual terminal."
 arch=('i686' 'x86_64')
 url="http://repo.or.cz/w/fbpad.git"
@@ -24,6 +24,7 @@ source=(
     'LICENSE'
     'correct_term_and_simplify.patch'
     '0001-Restore-color-shifting-when-bold-isn-t-available.patch'
+    '0001-Support-both-bold-and-italics-at-same-time.patch'
 )
 noextract=()
 
@@ -39,6 +40,8 @@ prepare() {
   patch -Np1 -i "${srcdir}/correct_term_and_simplify.patch"
   msg "Applying bold shift patch"
   patch -Np1 -i "${srcdir}/0001-Restore-color-shifting-when-bold-isn-t-available.patch"
+  msg "Applying bold italics patch"
+  patch -Np1 -i "${srcdir}/0001-Support-both-bold-and-italics-at-same-time.patch"
   cp "$srcdir/conf.h" conf.h
 }
 
@@ -76,14 +79,23 @@ package() {
     /usr/share/fonts/TTF/DroidSansFallbackFull.ttf:4.5 \
     /usr/share/fonts/TTF/Symbola.ttf:4.5 > "$srcdir/fontb.ttf"
 
+  msg "Making bold italic font"
+  ft2tf \
+    /usr/share/fonts/TTF/FantasqueSansMono-BoldItalic.ttf:4.5 \
+    /usr/share/fonts/TTF/DroidSansFallbackFull.ttf:4.5 \
+    /usr/share/fonts/TTF/Symbola.ttf:4.5 > "$srcdir/fontbi.ttf"
+
   ## Install fonts
   install -Dm644 $srcdir/font.ttf  $pkgdir/usr/share/$pkgname/font.ttf
   install -Dm644 $srcdir/fonti.ttf $pkgdir/usr/share/$pkgname/fonti.ttf
   install -Dm644 $srcdir/fontb.ttf $pkgdir/usr/share/$pkgname/fontb.ttf
+  install -Dm644 $srcdir/fontbi.ttf $pkgdir/usr/share/$pkgname/fontbi.ttf
 }
+
 sha256sums=('SKIP'
-            '74f684fe34c8cb5c9237cc719897577ebafe42619b98d68404edb2ba07b9011b'
+            '8987a58ad4bb1c40a263c9f9ee5fa748817bb21d4f4622ff373fef865cc0b16d'
             '424cfd0acad2c27ef49d60a6fcc9d32a7fc121caa44e94a6b2c20c8268c69695'
             '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
             '369d14a61c1b616138d03e54447b659fe03ee33abd8e593c581b50eb285c75b5'
-            '62b9045bc95d14c34c160a861787d289822fd2564d30badeb03c7011cc1276c7')
+            '62b9045bc95d14c34c160a861787d289822fd2564d30badeb03c7011cc1276c7'
+            'd7754ec41ebec2b6560cc53990bac9b097bd549df7dbcf5b004e80d50204a30c')
