@@ -1,4 +1,4 @@
-From 50f3da507081bd42de5f966f2ca74097fbca7277 Mon Sep 17 00:00:00 2001
+From 4ee82d6e4b9d7c05af254debeb880e9d06fd1ed7 Mon Sep 17 00:00:00 2001
 From: ShadowKyogre <shadowkyogre.public@gmail.com>
 Date: Thu, 5 May 2016 01:52:49 -0700
 Subject: [PATCH] Restore color shifting when bold isn't available
@@ -48,7 +48,7 @@ index 2cd3193..9111c7a 100644
  int pad_init(void);
  void pad_free(void);
 diff --git a/pad.c b/pad.c
-index 6db7830..8caf7fc 100644
+index 6db7830..a9b813c 100644
 --- a/pad.c
 +++ b/pad.c
 @@ -139,6 +139,12 @@ void pad_put(int ch, int r, int c, int fg, int bg)
@@ -60,7 +60,7 @@ index 6db7830..8caf7fc 100644
 +	#else
 +	if ((fg & FN_B) && !fonts[2] && (fg & FN_IS16) && ((fg & FN_16PAL) >> 28) < 8)
 +	#endif
-+		fg = clrmap(((fg & FN_16PAL) >> 28) + 8);
++		fg = (fg & FN_16PAL)|FN_IS16|FN_B|clrmap(((fg & FN_16PAL) >> 28) + 8);
  	bits = ch2fb(fnsel(fg, bg), ch, fg, bg);
  	if (!bits)
  		bits = ch2fb(0, ch, fg, bg);

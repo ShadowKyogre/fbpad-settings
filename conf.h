@@ -19,8 +19,8 @@ typedef unsigned int fbval_t;
 #define FB		"/usr/share/fbpad-git/fontb.ttf"
 
 /* foreground and background colors */
-#define FGCOLOR		COLORF
-#define BGCOLOR		COLOR0
+#define FGCOLOR		0xdcd6c2
+#define BGCOLOR		0x0d0815
 
 /* where to write the screen shot */
 #define SCRSHOT		"/tmp/scr"
@@ -31,7 +31,9 @@ typedef unsigned int fbval_t;
 /* optimized version of fb_val() */
 #define FB_VAL(r, g, b)	fb_val((r), (g), (b))
 
-#define COLOR0 0x0d0815
+#define BOLD_SHIFTS_COLOR
+
+#define COLOR0 0x190e22
 #define COLOR1 0xbf0053
 #define COLOR2 0x53bf00
 #define COLOR3 0xbf6c00
@@ -46,6 +48,4 @@ typedef unsigned int fbval_t;
 #define COLORC 0x62a6ff
 #define COLORD 0xbb62ff
 #define COLORE 0x62ffbb
-#define COLORF 0xdcd6c2
-
-#define BOLD_SHIFTS_COLOR
+#define COLORF 0xc6dae7
