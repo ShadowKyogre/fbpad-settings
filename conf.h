@@ -32,7 +32,7 @@ typedef unsigned int fbval_t;
 /* optimized version of fb_val() */
 #define FB_VAL(r, g, b)	fb_val((r), (g), (b))
 
-#define BOLD_SHIFTS_COLOR
+#undef BOLD_SHIFTS_COLOR
 
 #define COLOR0 0x190e22
 #define COLOR1 0xbf0053
