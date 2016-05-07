@@ -1,8 +1,8 @@
 # Contributor: Sara <sara at archlinux dot us>
 # Maintainer: aksr <aksr at t-com dot me>
 pkgname=fbpad-git
-pkgver=0.r267.421ceaa
-pkgrel=6
+pkgver=0.r268.f8cf419
+pkgrel=1
 pkgdesc="A small linux framebuffer virtual terminal."
 arch=('i686' 'x86_64')
 url="http://repo.or.cz/w/fbpad.git"
@@ -23,8 +23,7 @@ source=(
     'fbpad-256.info'
     'LICENSE'
     'correct_term_and_simplify.patch'
-    '0001-Restore-color-shifting-when-bold-isn-t-available.patch'
-    '0001-Improvements-to-restoring-bold-shifts-color.patch'
+    'bold_shifts_color.patch'
     '0001-Support-both-bold-and-italics-at-same-time.patch'
 )
 noextract=()
@@ -40,11 +39,8 @@ prepare() {
   msg "Applying exec patch"
   patch -Np1 -i "${srcdir}/correct_term_and_simplify.patch"
 
-  msg "Applying bold shift patch"
-  patch -Np1 -i "${srcdir}/0001-Restore-color-shifting-when-bold-isn-t-available.patch"
-
-  msg "Applying linux bold shift patch"
-  patch -Np1 -i "${srcdir}/0001-Improvements-to-restoring-bold-shifts-color.patch"
+  msg "Applying bold shift improvement patch"
+  patch -Np1 -i "${srcdir}/bold_shifts_color.patch"
 
   msg "Applying bold italics patch"
   patch -Np1 -i "${srcdir}/0001-Support-both-bold-and-italics-at-same-time.patch"
@@ -103,6 +99,5 @@ sha256sums=('SKIP'
             '424cfd0acad2c27ef49d60a6fcc9d32a7fc121caa44e94a6b2c20c8268c69695'
             '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
             '369d14a61c1b616138d03e54447b659fe03ee33abd8e593c581b50eb285c75b5'
-            '62b9045bc95d14c34c160a861787d289822fd2564d30badeb03c7011cc1276c7'
-            'cd404e92d94ecdcd447a11c4e888138dc6432aad89224d1060cd4fea01aa9aa4'
+            '3c5be597228b1c8147f7496a08d65092642dccd1bbda221a8580c14ecedc589b'
             'd7754ec41ebec2b6560cc53990bac9b097bd549df7dbcf5b004e80d50204a30c')
