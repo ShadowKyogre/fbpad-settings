@@ -1,7 +1,7 @@
 # Contributor: Sara <sara at archlinux dot us>
 # Maintainer: aksr <aksr at t-com dot me>
 pkgname=fbpad-git
-pkgver=0.r268.f8cf419
+pkgver=0.r269.dbf1a4f
 pkgrel=1
 pkgdesc="A small linux framebuffer virtual terminal."
 arch=('i686' 'x86_64')
@@ -23,7 +23,6 @@ source=(
     'fbpad-256.info'
     'LICENSE'
     'correct_term_and_simplify.patch'
-    'bold_shifts_color.patch'
     '0001-Support-both-bold-and-italics-at-same-time.patch'
 )
 noextract=()
@@ -38,9 +37,6 @@ prepare() {
   ## Custom conf.h
   msg "Applying exec patch"
   patch -Np1 -i "${srcdir}/correct_term_and_simplify.patch"
-
-  msg "Applying bold shift improvement patch"
-  patch -Np1 -i "${srcdir}/bold_shifts_color.patch"
 
   msg "Applying bold italics patch"
   patch -Np1 -i "${srcdir}/0001-Support-both-bold-and-italics-at-same-time.patch"
@@ -95,9 +91,8 @@ package() {
 }
 
 sha256sums=('SKIP'
-            'a2823572e4d9e98067d8892e7b32bf433989e8b9a76409abc479e2f0efa6ff61'
+            'ede918abb2e0d85c6618bd6af92f191695557e22ae84d5f534fdc42608a4e1ad'
             '424cfd0acad2c27ef49d60a6fcc9d32a7fc121caa44e94a6b2c20c8268c69695'
             '0ea8d51c57a3a59ca57428b6fe9b47fdb1fde281fc1b095c9832872e85b09a72'
             '369d14a61c1b616138d03e54447b659fe03ee33abd8e593c581b50eb285c75b5'
-            '3c5be597228b1c8147f7496a08d65092642dccd1bbda221a8580c14ecedc589b'
             'd7754ec41ebec2b6560cc53990bac9b097bd549df7dbcf5b004e80d50204a30c')
